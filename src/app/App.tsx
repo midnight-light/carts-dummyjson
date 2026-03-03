@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import reactLogo from '../assets/react.svg';
 import viteLogo from '/vite.svg';
 import { Flex } from '../components/ui/layouts/flex';
@@ -6,8 +5,6 @@ import { Button } from '../components/ui/buttons/button';
 import { PageLayout } from '../components/ui/layouts/page-layout';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <PageLayout>
       <Flex direction="column" align="center" gap={4}>
