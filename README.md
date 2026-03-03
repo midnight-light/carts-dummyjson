@@ -41,8 +41,6 @@
 │  │   └── utils/
 │  │       └── feature-flag.ts
 │  │
-│  ├── utils/                       # Common utilities
-│  │   └── cn.ts                    # className merger
-│  │
-│  └── index.css                    # Global styles + Tailwind
+│  ├── types/                  # Global Types
+│  └── index.css
 ```
