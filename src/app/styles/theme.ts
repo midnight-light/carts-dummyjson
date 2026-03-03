@@ -8,6 +8,7 @@ export interface CustomTheme {
     };
     fg: {
       base: string;
+      inverted: string;
     };
     secondary: {
       base: string;
@@ -49,6 +50,14 @@ export interface CustomTheme {
       xl: number;
     };
   };
+  spacing: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    xxl: number;
+  };
   borderRadius: {
     sm: number;
     md: number;
@@ -68,6 +77,7 @@ export const lightTheme: CustomTheme = {
     },
     fg: {
       base: '#121827',
+      inverted: '#f7f9ff',
     },
     secondary: {
       base: '#e55b45',
@@ -108,6 +118,14 @@ export const lightTheme: CustomTheme = {
       lg: 18,
       xl: 21,
     },
+  },
+  spacing: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+    xxl: 72,
   },
   borderRadius: {
     sm: 4,
