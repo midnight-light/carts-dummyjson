@@ -4,7 +4,8 @@ import type { ButtonHTMLAttributes } from 'react';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
+  fullWidth?: boolean;
 }
 
 const StyledButton = styled.button<ButtonProps>`
@@ -19,7 +20,11 @@ const StyledButton = styled.button<ButtonProps>`
   justify-content: center;
   min-width: 7.5rem;
   min-height: 2.5rem;
-
+  ${({ fullWidth }) =>
+    fullWidth &&
+    css`
+      width: 100%;
+    `}
   /* size variants */
   ${({ size = 'md', theme }) => {
     const sizes = {
@@ -35,6 +40,13 @@ const StyledButton = styled.button<ButtonProps>`
         padding: ${theme.spacing.md}px ${theme.spacing.lg}px;
         font-size: ${theme.typography.sizes.md}px;
       `,
+      icon: css`
+        padding: ${theme.spacing.xs}px;
+        font-size: ${theme.typography.sizes.xs}px;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        font-size: ${theme.typography.sizes.xl}px;
+      `,
     };
     return sizes[size];
   }}
@@ -47,7 +59,9 @@ const StyledButton = styled.button<ButtonProps>`
         color: ${theme.colors.fg.inverted};
 
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.primary.base};
+          background-color: ${theme.colors.white};
+          color: ${theme.colors.primary.base};
+          border: 1px solid ${theme.colors.primary.base};
         }
 
         &:active:not(:disabled) {
@@ -56,10 +70,12 @@ const StyledButton = styled.button<ButtonProps>`
       `,
       secondary: css`
         background-color: ${theme.colors.secondary.base};
-        color: ${theme.colors.secondary.base};
+        color: ${theme.colors.white};
 
         &:hover:not(:disabled) {
-          background-color: ${theme.colors.secondary.base};
+          background-color: ${theme.colors.white};
+          border: 1px solid ${theme.colors.secondary.base};
+          color: ${theme.colors.secondary.base};
         }
       `,
       danger: css`
