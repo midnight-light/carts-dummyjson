@@ -7,7 +7,7 @@
 - React Query выделен в отдельный конфиг
 - Axios Interceptors для глобальной обработки запросов/ответов
 - Error Handling - кастомный ApiError класс с handleApiError
-- Async Boundary - переиспользуемый компонент для управления UI относительно состояния: load, error, data
+- Async Boundary - переиспользуемый компонент для управления UI относительно состояния: load, error, view
 
 ## Архитектура проекта
 
