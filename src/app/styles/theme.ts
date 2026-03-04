@@ -1,5 +1,6 @@
 export interface CustomTheme {
   colors: {
+    white: string;
     primary: {
       base: string;
     };
@@ -9,6 +10,9 @@ export interface CustomTheme {
     fg: {
       base: string;
       inverted: string;
+    };
+    border: {
+      base: string;
     };
     secondary: {
       base: string;
@@ -27,6 +31,7 @@ export interface CustomTheme {
     };
     text: {
       label: string;
+      subtitle: string;
       help: string;
     };
   };
@@ -58,6 +63,14 @@ export interface CustomTheme {
     xl: number;
     xxl: number;
   };
+  gap: {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    xxl: number;
+  };
   borderRadius: {
     sm: number;
     md: number;
@@ -69,6 +82,7 @@ export interface CustomTheme {
 
 export const lightTheme: CustomTheme = {
   colors: {
+    white: '#ffffff',
     primary: {
       base: '#537cf4',
     },
@@ -78,6 +92,9 @@ export const lightTheme: CustomTheme = {
     fg: {
       base: '#121827',
       inverted: '#f7f9ff',
+    },
+    border: {
+      base: '#e0e0e0',
     },
     secondary: {
       base: '#e55b45',
@@ -95,10 +112,12 @@ export const lightTheme: CustomTheme = {
       base: '#66BCFE',
     },
     text: {
-      label: '#879099',
+      label: '#121827',
+      subtitle: '#afb3ca',
       help: '#737373',
     },
   },
+
   typography: {
     families: {
       sansSerif: '"Inter", Helvetica, Arial, sans-serif',
@@ -120,6 +139,14 @@ export const lightTheme: CustomTheme = {
     },
   },
   spacing: {
+    xs: 4,
+    sm: 8,
+    md: 16,
+    lg: 24,
+    xl: 32,
+    xxl: 72,
+  },
+  gap: {
     xs: 4,
     sm: 8,
     md: 16,
