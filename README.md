@@ -7,6 +7,7 @@
 - React Query выделен в отдельный конфиг
 - Axios Interceptors для глобальной обработки запросов/ответов
 - Error Handling - кастомный ApiError класс с handleApiError
+- Async Boundary - переиспользуемый компонент для управления UI относительно состояния: load, error, data
 
 ## Архитектура проекта
 
@@ -53,4 +54,24 @@
 │  │
 │  ├── types/                  # Global Types
 │  └── index.css
+```
+
+## Async Error Boundary
+
+### Пример компонента
+
+```tsx
+export const AsyncBoundary = ({ fallback, errorFallback: ErrorFallback, children }: AsyncBoundaryProps) => (
+  <ErrorBoundary fallbackRender={({ error }) => <ErrorFallback error={toError(error)} />}>
+    <Suspense fallback={fallback}>{children}</Suspense>
+  </ErrorBoundary>
+);
+```
+
+### Пример использования
+
+```tsx
+<AsyncBoundary errorFallback={CartsError} fallback={<CartsSkeleton />}>
+  <CartsPage />
+</AsyncBoundary>
 ```
