@@ -6,10 +6,10 @@ import type { Cart } from '../cart.types';
 
 interface CartCardProps {
   item: Cart;
+  onDetails: (cartId: string) => void;
 }
 
-export const CartCard = ({ item }: CartCardProps) => {
-  console.log(JSON.stringify(item, null, 2));
+export const CartCard = ({ item, onDetails }: CartCardProps) => {
   return (
     <Card variant="elevated">
       <CardHeader>
@@ -29,8 +29,10 @@ export const CartCard = ({ item }: CartCardProps) => {
           <Typography variant="body">{item.total}</Typography>
         </Grid>
       </CardContent>
-      <CardFooter divider>
-        <Button variant="primary">Details</Button>
+      <CardFooter py={2} px={1}>
+        <Button variant="primary" fullWidth onClick={() => onDetails(item.id)}>
+          Details
+        </Button>
       </CardFooter>
     </Card>
   );

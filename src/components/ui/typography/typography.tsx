@@ -3,7 +3,7 @@ import type { ElementType, HTMLAttributes } from 'react';
 
 type TypographyVariant = 'h1' | 'h2' | 'h3' | 'body' | 'caption' | 'label';
 
-type TypographyColor = 'label' | 'subtitle' | 'help';
+type TypographyColor = 'label' | 'subtitle' | 'help' | 'success';
 
 interface TypographyProps extends HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;

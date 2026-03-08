@@ -1,5 +1,6 @@
 import { apiInstance } from '../../../app/api/instance';
 import type { PaginationParams } from '../../../app/api/api.types';
+import type { UpdateCartRequestDto } from './dto/request/carts-requests.dto';
 
 const CART_ROUTES = {
   LIST: '/carts',
@@ -19,8 +20,8 @@ export const fetchCartById = async (cartId: string) => {
   return data;
 };
 
-export const updateCart = async (cartId: string, body: unknown) => {
-  const { data } = await apiInstance.patch(CART_ROUTES.UPDATE(cartId), body);
+export const updateCart = async (cartId: string, body: UpdateCartRequestDto) => {
+  const { data } = await apiInstance.put(CART_ROUTES.UPDATE(cartId), body);
   return data;
 };
 

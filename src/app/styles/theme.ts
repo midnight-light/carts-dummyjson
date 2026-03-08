@@ -33,6 +33,7 @@ export interface CustomTheme {
       label: string;
       subtitle: string;
       help: string;
+      success: string;
     };
   };
   typography: {
@@ -78,6 +79,13 @@ export interface CustomTheme {
     xl: number;
     full: number;
   };
+  breakpoints: {
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    xxl: number;
+  };
 }
 
 export const lightTheme: CustomTheme = {
@@ -113,8 +121,9 @@ export const lightTheme: CustomTheme = {
     },
     text: {
       label: '#121827',
-      subtitle: '#afb3ca',
+      subtitle: '#2e4676',
       help: '#737373',
+      success: '#5AC189',
     },
   },
 
@@ -160,5 +169,12 @@ export const lightTheme: CustomTheme = {
     lg: 12,
     xl: 16,
     full: 9999,
+  },
+  breakpoints: {
+    sm: 768,
+    md: 1024,
+    lg: 1280,
+    xl: 1440,
+    xxl: 1920,
   },
 };
