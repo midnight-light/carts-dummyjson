@@ -10,7 +10,9 @@ const queryConfig: DefaultOptions = {
   queries: {
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
-    refetchOnMount: true,
+    refetchOnMount: false,
+    staleTime: 10 * 60 * 1000,
+    gcTime: 15 * 60 * 1000,
 
     retry: (failureCount, error) => {
       // dont retry on 4xx errors
@@ -25,9 +27,6 @@ const queryConfig: DefaultOptions = {
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
 
     // stale time - data is considered fresh for 1 minute
-    staleTime: 1 * 60 * 1000,
-    gcTime: 2 * 60 * 1000,
-
     // error handling
     throwOnError: false,
   },

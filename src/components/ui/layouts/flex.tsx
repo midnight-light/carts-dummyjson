@@ -90,6 +90,7 @@ const StyledFlex = styled.div<FlexProps>`
   flex-grow: ${({ grow }) => grow};
   flex-shrink: ${({ shrink }) => shrink};
   flex-basis: ${({ basis }) => basis};
+  overflow: scroll;
 
   /* Gap */
   ${({ gap, theme }) => gap && `gap: ${resolveSpacing(gap, theme.spacing)};`}

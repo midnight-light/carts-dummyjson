@@ -14,6 +14,8 @@ export const GlobalStyles = () => {
 
         html,
         body {
+          height: 100%;
+          width: 100%;
           font-family: ${theme.typography.families.sansSerif};
           font-size: ${theme.typography.sizes.md}px;
           font-weight: ${theme.typography.weights.normal};
@@ -25,7 +27,8 @@ export const GlobalStyles = () => {
         }
 
         #root {
-          min-height: 100vh;
+          width: 100%;
+          height: 100%;
           display: flex;
           flex-direction: column;
         }
