@@ -1,3 +1,13 @@
+## Быстрый старт
+
+```
+cp .env.example .env
+npm install
+npm run dev # http://localhost:5173
+npm run build
+npm run preview
+```
+
 ## Ключевые особенности:
 
 - TypeScript first подход
@@ -57,7 +67,14 @@
 │  └── index.css
 ```
 
+### Ключевые архитектурные решения
+
+- **Suspense-first fetching::** в каждом запросе используется `useSuspenseQuery`.
+- **Optimistic mutations** - все обновления немедленно записываются в кэш, затем подтверждаются или откатываются при ошибки на сервере
+
 ## Async Error Boundary
+
+![alt text](docs/img/async-boundary-diagram.svg)
 
 ### Пример компонента
 
