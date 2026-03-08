@@ -11,7 +11,7 @@
  * }
  */
 export interface Cart {
-  id: string;
+  id: number;
   products: Product[];
   total: number;
   discountedTotal: number;
@@ -33,7 +33,7 @@ export interface Cart {
  * "thumbnail": "https://cdn.dummyjson.com/products/images/sports-accessories/Cricket%20Helmet/thumbnail.png"
  */
 export interface Product {
-  id: string;
+  id: number;
   title: string;
   price: number;
   quantity: number;

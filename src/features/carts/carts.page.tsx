@@ -1,4 +1,4 @@
-import { useCarts } from './hooks/use-carts';
+import { useCarts } from './api/hooks/use-carts';
 import { CartCard } from './components/cart-card';
 import styled from '@emotion/styled';
 import { Flex } from '../../components/ui/layouts/flex';
@@ -19,7 +19,7 @@ export const CartsPage = () => {
 
   const navigate = useNavigate();
 
-  const handleDetails = (cartId: string) => {
+  const handleDetails = (cartId: number) => {
     navigate(`/cart/${cartId}`);
   };
 

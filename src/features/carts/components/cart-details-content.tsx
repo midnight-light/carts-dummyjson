@@ -1,13 +1,15 @@
-import { useCartDetails } from '../hooks/use-cart-details';
+import { useCartDetails } from '../api/hooks/use-cart-details';
 import { Button } from '../../../components/ui/buttons/button';
 import { Typography } from '../../../components/ui/typography/typography';
 import { Flex } from '../../../components/ui/layouts/flex';
 import { Card, CardContent, CardFooter } from '../../../components/cards/card';
 import { ProductItem } from '../../products/components/product-item';
 import type { Product } from '../cart.types';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import styled from '@emotion/styled';
 import { formatPrice } from '../../../utils/format-price';
+import type { UpdatedProductItem } from '../../products/types/product.types';
+import { useHandleSaveCart } from '../hooks/use-handle-save-cart';
 
 const StyledProductsContainer = styled(Flex)`
   flex-wrap: wrap;
@@ -27,14 +29,19 @@ export const CartDetailsContent: React.FC = () => {
     actions: { goBack },
   } = useCartDetails();
 
-  const [updatedProducts, setUpdatedProducts] = useState<Map<Product['id'], Product>>(() => new Map());
-  const [addedPrice, setAddedPrice] = useState(0);
+  const [updatedProducts, setUpdatedProducts] = useState<UpdatedProductItem>(() => new Map());
+
+  const { handleSave, isPending } = useHandleSaveCart(cart.id, {
+    onClearLocalState: () => setUpdatedProducts(() => new Map()),
+    onSuccess: (updatedCart) => {
+      console.log('Cart saved successfully', updatedCart);
+    },
+    onError: (error) => {
+      console.error('Failed to save cart', error);
+    },
+  });
 
   const isDirty = useMemo(() => updatedProducts.size > 0, [updatedProducts]);
-
-  const handleUpdateCart = useCallback((product: Product) => {
-    setUpdatedProducts((prev) => new Map(prev).set(product.id, product));
-  }, []);
 
   const mergedProducts = useMemo(
     () => cart.products.map((p) => updatedProducts.get(p.id) ?? p),
@@ -48,9 +55,13 @@ export const CartDetailsContent: React.FC = () => {
 
   const computedTotalQuantity = useMemo(() => mergedProducts.reduce((sum, p) => sum + p.quantity, 0), [mergedProducts]);
 
-  useEffect(() => {
-    console.warn('updatedProducts', Array.from(updatedProducts.values()));
-  }, [updatedProducts]);
+  const handleUpdateCart = useCallback((product: Product) => {
+    setUpdatedProducts((prev) => new Map(prev).set(product.id, product));
+  }, []);
+
+  const handleSaveCart = useCallback(() => {
+    handleSave(mergedProducts);
+  }, [handleSave, mergedProducts]);
 
   return (
     <Flex direction="column" gap={4} fullWidth align="center" className="cart-details-content">
@@ -82,8 +93,8 @@ export const CartDetailsContent: React.FC = () => {
         ))}
       </StyledProductsContainer>
       {isDirty && (
-        <Button variant="primary" size="sm">
-          Save Cart
+        <Button variant="primary" size="sm" onClick={handleSaveCart}>
+          Save Cart {isPending ? 'loading...' : ''}
         </Button>
       )}
     </Flex>

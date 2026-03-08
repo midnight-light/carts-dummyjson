@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from './use-carts';
-import type { Cart } from '../cart.types';
+import type { Cart } from '../../cart.types';
 
 interface UseCartDetailsReturn {
   data: {
@@ -26,7 +26,7 @@ export const useCartDetails = (): UseCartDetailsReturn => {
     throw new Error('useCartDetails must be used within a /cart/:id route');
   }
 
-  const { data: cart } = useCart(id);
+  const { data: cart } = useCart(Number(id));
 
   return {
     data: { cart },

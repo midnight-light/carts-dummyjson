@@ -6,7 +6,7 @@ import type { Cart } from '../cart.types';
 
 interface CartCardProps {
   item: Cart;
-  onDetails: (cartId: string) => void;
+  onDetails: (cartId: number) => void;
 }
 
 export const CartCard = ({ item, onDetails }: CartCardProps) => {
