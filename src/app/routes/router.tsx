@@ -17,6 +17,12 @@ const CartDetailsPage = lazy(() =>
   })),
 );
 
+const NotFoundPage = lazy(() =>
+  import('../../pages/not-found.page').then((m) => ({
+    default: m.NotFoundPage,
+  })),
+);
+
 export const router = createBrowserRouter([
   {
     element: <AppLayout />,
@@ -36,6 +42,10 @@ export const router = createBrowserRouter([
             <CartDetailsPage />
           </AsyncBoundary>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },
